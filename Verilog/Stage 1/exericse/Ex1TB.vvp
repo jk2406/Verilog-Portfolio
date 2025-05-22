@@ -1,0 +1,71 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_000001b7eb552510 .scope module, "Ex1TB" "Ex1TB" 2 2;
+ .timescale -9 -12;
+v000001b7eb577a00_0 .net "a", 0 0, L_000001b7eb5cfe50;  1 drivers
+v000001b7eb577dc0_0 .net "b", 0 0, L_000001b7eb5d05d0;  1 drivers
+v000001b7eb577e60_0 .net "c", 0 0, L_000001b7eb5d0530;  1 drivers
+v000001b7eb5d03f0_0 .net "d", 0 0, L_000001b7eb5d0030;  1 drivers
+v000001b7eb5d0490_0 .net "e", 0 0, L_000001b7eb575190;  1 drivers
+v000001b7eb5cfc70_0 .var "inputs", 3 0;
+L_000001b7eb5cfe50 .part v000001b7eb5cfc70_0, 3, 1;
+L_000001b7eb5d05d0 .part v000001b7eb5cfc70_0, 2, 1;
+L_000001b7eb5d0530 .part v000001b7eb5cfc70_0, 1, 1;
+L_000001b7eb5d0030 .part v000001b7eb5cfc70_0, 0, 1;
+S_000001b7eb5526a0 .scope module, "dut" "Ex1" 2 14, 3 2 0, S_000001b7eb552510;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /INPUT 1 "c";
+    .port_info 3 /INPUT 1 "d";
+    .port_info 4 /OUTPUT 1 "e";
+L_000001b7eb24a5d0 .functor AND 1, L_000001b7eb5cfe50, L_000001b7eb5d05d0, C4<1>, C4<1>;
+L_000001b7eb24bc70 .functor AND 1, L_000001b7eb24a5d0, L_000001b7eb5d0530, C4<1>, C4<1>;
+L_000001b7eb575190 .functor AND 1, L_000001b7eb24bc70, L_000001b7eb5d0030, C4<1>, C4<1>;
+v000001b7eb552f20_0 .net *"_ivl_0", 0 0, L_000001b7eb24a5d0;  1 drivers
+v000001b7eb5750f0_0 .net *"_ivl_2", 0 0, L_000001b7eb24bc70;  1 drivers
+v000001b7eb24bbd0_0 .net "a", 0 0, L_000001b7eb5cfe50;  alias, 1 drivers
+v000001b7eb24a530_0 .net "b", 0 0, L_000001b7eb5d05d0;  alias, 1 drivers
+v000001b7eb552830_0 .net "c", 0 0, L_000001b7eb5d0530;  alias, 1 drivers
+v000001b7eb5528d0_0 .net "d", 0 0, L_000001b7eb5d0030;  alias, 1 drivers
+v000001b7eb577960_0 .net "e", 0 0, L_000001b7eb575190;  alias, 1 drivers
+    .scope S_000001b7eb552510;
+T_0 ;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v000001b7eb5cfc70_0, 0, 4;
+    %vpi_call 2 25 "$display", "Time\011 a b c d e" {0 0 0};
+    %vpi_call 2 26 "$monitor", "%0d\011 %b %b %b %b %b", $time, v000001b7eb577a00_0, v000001b7eb577dc0_0, v000001b7eb577e60_0, v000001b7eb5d03f0_0, v000001b7eb5d0490_0 {0 0 0};
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v000001b7eb5cfc70_0, 0, 4;
+    %delay 10000, 0;
+    %pushi/vec4 1, 0, 4;
+    %store/vec4 v000001b7eb5cfc70_0, 0, 4;
+    %delay 10000, 0;
+    %pushi/vec4 15, 0, 4;
+    %store/vec4 v000001b7eb5cfc70_0, 0, 4;
+    %delay 10000, 0;
+    %pushi/vec4 13, 0, 4;
+    %store/vec4 v000001b7eb5cfc70_0, 0, 4;
+    %delay 10000, 0;
+    %vpi_call 2 32 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+    .scope S_000001b7eb552510;
+T_1 ;
+    %vpi_call 2 37 "$dumpfile", "Ex1.vcd" {0 0 0};
+    %vpi_call 2 38 "$dumpvars", 32'sb00000000000000000000000000000000, S_000001b7eb552510 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "Ex1TB.v";
+    "Ex1.v";
